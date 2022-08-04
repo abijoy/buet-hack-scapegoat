@@ -8,6 +8,7 @@ import time
 import subprocess
 import json
 import requests
+import itertools
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -116,6 +117,12 @@ if __name__ == '__main__':
                 print(statement)
                 print('searching track')
                 speak('searching track')
+            if 'top news' in statement or 'top stories' in statement:
+                resp = requests.get('https://b39a-103-217-111-30.in.ngrok.io/app/news/top-news?lang=en&country=us')
+                resp_dict = json.loads(resp.text)
+                for i in resp_dict['top_news']:
+                    print(i)
+                    speak(i)
 
         except Exception as e:
             print("sorry no such result..please try again..")

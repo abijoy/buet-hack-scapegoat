@@ -63,6 +63,24 @@ def searchWikipedia(statement):
     print(results)
     speak(results)
 
+def getCity():
+    try:
+        freegeoip = "https://ipinfo.io/"
+        geo_r = requests.get(freegeoip)
+        geo_dict = geo_r.json()
+        return geo_dict['city']
+    except Exception as e:
+        print(e)
+
+def getCountry():
+    try:
+        freegeoip = "https://ipinfo.io/"
+        geo_r = requests.get(freegeoip)
+        geo_dict = geo_r.json()
+        return geo_dict['country']
+    except Exception as e:
+        print(e)
+
 
 
 # genres = ['pop', 'hip hop', 'rap', 'rock',
@@ -118,7 +136,13 @@ if __name__ == '__main__':
                 print('searching track')
                 speak('searching track')
             if 'top news' in statement or 'top stories' in statement:
-                resp = requests.get('https://b39a-103-217-111-30.in.ngrok.io/app/news/top-news?lang=en&country=us')
+                country = getCountry()
+                if 'my location' in statement:
+                    city = getCity()
+                    endpoint_url = f'https://b39a-103-217-111-30.in.ngrok.io/app/news/geo-top-news?lang=en&country={country}&city={city}'
+                    resp = requests.get(endpoint_url)
+                else:
+                    resp = requests.get(f'https://b39a-103-217-111-30.in.ngrok.io/app/news/top-news?lang=en&country={country}')
                 resp_dict = json.loads(resp.text)
                 for i in resp_dict['top_news']:
                     print(i)

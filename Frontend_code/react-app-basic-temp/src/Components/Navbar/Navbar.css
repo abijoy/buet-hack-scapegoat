@@ -1,0 +1,12 @@
+.navbar {
+	background-color: #d3d3d3;
+}
+
+.navbar .nav_menu {
+	border-left: 1px solid black;
+}
+.navbar .nav_menu_item {
+	padding: 0.5rem 1.5rem;
+	/* border-left: 1px solid black;
+	border-right: 1px solid black; */
+}

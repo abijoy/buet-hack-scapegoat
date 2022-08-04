@@ -1,12 +1,17 @@
 .navbar {
-	background-color: #d3d3d3;
+	background-color: #041342;
+	color: white !important;
+	text-decoration: none !important;
 }
 
 .navbar .nav_menu {
-	border-left: 1px solid black;
+	border-left: 1px solid rgb(255, 255, 255);
 }
 .navbar .nav_menu_item {
 	padding: 0.5rem 1.5rem;
+	cursor: pointer;
+	color: white !important;
+	text-decoration: none !important;
 	/* border-left: 1px solid black;
 	border-right: 1px solid black; */
 }

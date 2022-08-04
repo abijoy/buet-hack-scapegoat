@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setLogin } from "../../Redux-toolkit/LoginSlice";
 import "./Navbar.css";
@@ -19,7 +19,7 @@ export default function Navbar() {
 
 	const history = useHistory();
 	const location = useLocation();
-	console.log(location.state.admin);
+	// console.log(location.state.admin);
 	const logout = () => {
 		dispatch(setLogin(false));
 		history.push("/");
@@ -30,57 +30,27 @@ export default function Navbar() {
 				{/* {location.state.admin === true ? "admin" : "normal user"} */}
 				<div className='d-flex align-items-center me-2'>
 					<span>
-						<FontAwesomeIcon
-							className='fa-2x'
-							icon={faMapMarkerAlt}
+						<img
+							style={{ height: "40px" }}
+							src='/assets/goatIcon.png'
+							alt=''
+							className='img-fluid'
 						/>
 					</span>
 					<span className='ms-3 fs-3'>
-						<>Vahan 24/7</>
+						<>ScapeGoat</>
 					</span>
 				</div>
 				<div className='ms-2 nav_menu'>
-					<span className='nav_menu_item'>Dashboard</span>
-					<span className='nav_menu_item'>Trucks</span>
-					<span className='nav_menu_item'>Driver</span>
-				</div>
-			</div>
-			<div className='d-flex align-items-center justify-content-center'>
-				<span
-					className='me-2 d-inline-flex align-items-center justify-content-center'
-					style={{
-						width: "2rem",
-						height: "2rem",
-						borderRadius: "50%",
-					}}>
-					<FontAwesomeIcon icon={faUserAlt} />
-				</span>
-				<div
-					className='position-relative'
-					style={{ cursor: "pointer" }}
-					onClick={() => {
-						setlogoutShow(!logoutShow);
-					}}>
-					<span>
-						{" "}
-						Company Manager <FontAwesomeIcon icon={faAngleDown} />
-					</span>
-					{logoutShow && (
-						<div
-							className='position-absolute p-3 bg-info'
-							style={{
-								width: "100%",
-								bottom: -100,
-								zIndex: 500,
-								left: 0,
-							}}>
-							<button
-								onClick={logout}
-								className='btn btn-danger  w-100'>
-								LOGOUT
-							</button>
-						</div>
-					)}
+					<Link to='/' className='nav_menu_item'>
+						Music
+					</Link>
+					<Link to='/search' className='nav_menu_item'>
+						Search
+					</Link>
+					<Link to='/note' className='nav_menu_item'>
+						Note
+					</Link>
 				</div>
 			</div>
 		</div>

@@ -13,19 +13,10 @@ function App() {
 		<Router>
 			{/* <Navbar /> */}
 			<Switch>
-				<Route exact path='/'>
-					<Home />
-				</Route>
-				<PrivateRoute
-					exact
-					path='/dashboard'
-					component={Dashboard}></PrivateRoute>
-				{/* <Route exact path='/dashboard'>
+				<Route path='/'>
 					<Dashboard />
-				</Route> */}
-				{/* <Route exact path='/normal'>
-					<NormalUser />
-				</Route> */}
+				</Route>
+				{/* <Route exact path='/dashboard' component={Dashboard}></Route> */}
 			</Switch>
 		</Router>
 	);

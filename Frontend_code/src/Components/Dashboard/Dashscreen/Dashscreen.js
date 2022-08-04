@@ -61,8 +61,18 @@ export default function Dashscreen(props) {
 
 	const handleSaveNote = () => {
 		// setSavedNotes([...savedNotes, note]);
-		setSavedNotes([note]);
+		setSavedNotes(note);
+		// setOurText(note);
+		speechHandler(msg, note);
 		setNote("");
+	};
+	const [ourText, setOurText] = useState("");
+	const msg = new SpeechSynthesisUtterance();
+
+	const speechHandler = (msg, note) => {
+		msg.text =
+			"Start Address: Dhanmondi, Dhaka 1205, Bangladesh End Address: Jigatola, Dhaka 1205, Bangladesh STEP 1 Head <b>southeast</b> on <b>Rd No. 8A</b> toward <b>Rd 8/<wbr/>A</b> STEP 2 Turn <b>right</b> after Eduaid-Bangladesh office (on the right) STEP 3 Turn <b>left</b> onto <b>Satmasjid Road</b> STEP 4 Make a <b>U-turn</b> at <b>Rd No. 5/<wbr/>A</b> STEP 5 Turn <b>left</b> onto <b>Rd No 5/<wbr/>A</b>";
+		window.speechSynthesis.speak(msg);
 	};
 	return (
 		<div className='h-100 w-100 d-flex align-items-center justify-content-center '>
@@ -96,11 +106,16 @@ export default function Dashscreen(props) {
 						{/* <p>Live text</p> */}
 						<p className='text-secondary fw-bold'>{note}</p>
 					</div>
+					{/* <input
+						type='text'
+						value={ourText}
+						placeholder='Enter Text'
+						onChange={(e) => setOurText(e.target.value)}
+					/> */}
+					<button onClick={() => speechHandler(msg)}>SPEAK</button>
 					<div className='' style={{ width: "40vw" }}>
 						<h2>Notes</h2>
-						{savedNotes.map((n) => (
-							<p key={n}>{n}</p>
-						))}
+						<p>{savedNotes}</p>
 					</div>
 				</div>
 			</div>
